@@ -1,0 +1,24 @@
+{% extends 'coursetracker/main.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Course Tracker</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/search.css' %}" />
+</head>
+<body>
+
+    <div class="wrapper">
+        <input type="text" class="input" placeholder="find your path" />
+        <div class="searchbtn">
+            <i class="fas fa-search"></i>
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock %}
