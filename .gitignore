@@ -9,6 +9,7 @@ media
 
 ### VSCode ###
 .vscode*
+.vs*
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
