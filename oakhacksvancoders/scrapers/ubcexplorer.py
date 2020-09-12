@@ -41,7 +41,6 @@ def generateCoursePrereqTree(code):
     course = courseInfo(code)
     # cache information so we don't need to query the same course
     allCourseData[code] = course
-    # print(course)
 
     preq = []
     if(course):
