@@ -1,9 +1,22 @@
-
-
-#logo {
+#logo{
 }
 
 body {
     background-color: #ebeff5;
 }
 
+#prereq{
+    background-color: #97D4E9;
+}
+
+#dependent{
+    background-color: #6EC4E8;
+}
+
+#navbarNav{
+    background-color: #002145;
+}
+
+#rmp{
+    background-color: #08203a
+}
