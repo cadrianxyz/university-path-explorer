@@ -1,0 +1,83 @@
+{% load static %}
+
+<!--assets-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+
+<!--Topbar-->
+<nav class="navbar navbar-expand-lg" id="navbarNav">
+    <a class="navbar-brand" href="#">Home</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+<!--prereq and dependent-->
+
+<br>
+
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="prereq">
+                <div class= "card-header">
+                    <h5 class="card-title">Prerequisite Courses</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title"></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="dependent">
+                <div class= "card-header">
+                    <h5 class="card-title">Dependent Courses</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title"></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--grade distribution-->
+
+<br>
+
+
+
+<!--ratemyprof-->
+
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="rmp">
+                <div class= "card-header">
+                    <h5 class="card-title">Rate My Prof</h5>
+                </div>
+                <div class="card-body">
+                
+                <div class="row">
+                    <div class="col">
+                        5/5
+                    </div>
+                    <div class="col">
+                        55% take again
+                    </div>
+                </div>
+
+                    <h3 class="card-title"></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'coursetracker/chart.html' %}
