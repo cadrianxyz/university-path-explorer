@@ -5,3 +5,4 @@ from .models import Chart
 
 def create_chart(request):
     return render(request, "genres.html", {'charts': Chart.objects.all()})
+
