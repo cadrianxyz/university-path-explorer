@@ -58,6 +58,7 @@ def course(request, pk):
     }
     # print(courseInfo)
 
+
     return render(request, 'coursetracker/course.html', { 'courseData': courseInfo })
 
 class ClubChartView(TemplateView):
