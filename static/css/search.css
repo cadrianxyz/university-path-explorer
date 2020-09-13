@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital@1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
 
 
 * {
@@ -15,19 +14,17 @@
 
 body {
     background-size: cover;
-    background: url("../images/ubc.png") no-repeat 0 center fixed;
+    background: url("../images/ubc.png") no-repeat center;
+    background-position: 100% auto;
     min-height: 100%;
     background-position: center top;
 }
 
 /* Navigation bar style */
-.navbarsearch1 {
-    overflow: hidden !important;
-    background-color: #002145 !important;
-    position: fixed !important; /* Set the navbar to fixed position */
-    top: 0 !important; /* Position the navbar at the top of the page */
-    width: 100% !important; /* Full width */
-    font-family: 'Open Sans', sans-serif !important;
+.navsearch {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
 }
 
 /* Welcome text positioning */
@@ -122,26 +119,18 @@ h1 {
 
 /* Search button icon */
 
-.searchbtn .fas{
+.searchbtn {
     color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    height: 2.5em;
+    width: 10%;
     font-size: 18px;
+    border: none;
 }
 
-    .searchbtn:hover {
-        background-color: #28a745;
-        color: black;
-    }
-
-.navsearch {
-    position: absolute;
-    right: 10;
+.searchbtn:hover {
+    background-color: #97D4EA;
+    color: black;
 }
-
-/* Footer */
 
 .footer {
     position: absolute;

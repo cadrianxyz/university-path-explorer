@@ -1,0 +1,51 @@
+
+
+
+.grade-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.info-key {
+    flex: 50%;
+    min-width: 200px;
+    text-align: right;
+    margin-left: 40px;
+    margin-right: 20px;
+    font-weight: bold;
+}
+.info-key-sm {
+    flex: 30%;
+    min-width: unset;
+}
+.info-details {
+    flex: 50%;
+    min-width: 200px;
+    text-align: left;
+}
+
+.course-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.course-col {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 27%;
+}
+.course-col:nth-child(1), .course-col:nth-child(3) {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.card-title {
+    text-align: center;
+    line-height: 1.5em;
+    width: 100%;
+}
+h2.card-title {
+    font-size: 2.5em;
+    padding-bottom: 0;
+}
