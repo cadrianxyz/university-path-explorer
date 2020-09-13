@@ -71,3 +71,16 @@ def findCourseSessions(subject, course):
         r2json = []
     
     return [*r1json, *r2json]
+
+def get_rmp_details(subject, course):
+    sect = sections(DEFAULT_TERM_WINTER, subject, course)
+    instructors = {}
+    for section in sect:
+        instructor = grade_distribution(DEFAULT_TERM_WINTER, subject, course, section)['instructor'].split(', ')
+        if len(instructor) > 1:
+            instructor_name = instructor[1] + ' ' + instructor[0]
+            
+        section_num = grade_distribution(DEFAULT_TERM_WINTER, subject, course, section)['section']
+            
+        instructors[section_num] = instructor_name
+    return instructors
