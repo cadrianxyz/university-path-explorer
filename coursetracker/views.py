@@ -44,17 +44,19 @@ def course(request, pk):
     courseInfo['stats'] = distributions['OVERALL']['stats']
 
     try:
-        instructorName = distributions['OVERALL']['instructor'].split(', ')
+        instructorName = distributions[courseSessions[0]]['instructor'].split(', ')
         instructorName = instructorName[1] + " " + instructorName[0]
     except:
         instructorName = 'TBA'
 
     prof = rmp.UBCprofs.SearchProfessor(instructorName)
-    print('prof', instructorName)
     courseInfo['instructor'] = {
-        'name': instructorName
+        'name': instructorName,
+        'overall rating': prof['rating_class'],
+        'rating ': prof['overall_rating'],
+        'number of ratings': prof['tNumRatings'],
     }
-    print(courseInfo)
+    # print(courseInfo)
 
     return render(request, 'coursetracker/course.html', { 'courseData': courseInfo })
 
