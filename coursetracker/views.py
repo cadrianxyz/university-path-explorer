@@ -50,7 +50,6 @@ def course(request, pk):
         instructorName = 'TBA'
 
     prof = rmp.UBCprofs.SearchProfessor(instructorName)
-    print('prof', prof)
     courseInfo['instructor'] = {
         'name': instructorName,
         'overall rating': prof['rating_class'],
