@@ -42,12 +42,12 @@
     <div class="course-col">
         <div class="card text-center mb-3" id="rmp">
             <div class="card-header">
-                <h3 class="card-title">Course Professor: </h3>
+                <h3 class="card-title">Course Professor</h3>
             </div>
             <div class="card-body">
                 {% for key, val in courseData.instructor.items %}
                 <h3 class="grade-info">
-                    <span class="info-key">{{ key.capitalize }}: </span>
+                    <span class="info-key info-key-sm">{{ key.capitalize }}: </span>
                     <span class="info-details">{{ val }}</span>
                 </h3>
                 {% endfor %}
