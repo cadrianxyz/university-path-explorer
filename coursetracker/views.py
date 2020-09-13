@@ -1,17 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from .models import *
-from oakhacksvancoders.scrapers import ubcexplorer, ubcgrades
-# Create your views here.
+from oakhacksvancoders.scrapers import ubcexplorer, ubcgrades, rmp
 
-def home(request):
-    return render(request, 'coursetracker/search.html')
+# the main dictionary
+courseInfo = {}
 
+# search works as a "buffer" for when we are obtaining data
 def search(request):
     if request.method == 'GET':
         search = request.GET.get('find')
-        return course(request, search)
+        # print('search', search)
+        return redirect('coursetracker:course', pk=search)
 
 def course(request, pk):
     # get the subject and number
@@ -22,16 +23,13 @@ def course(request, pk):
     else:
         subject = pk[0:-3].upper() 
         number = pk[-3:]
-        if(not isinstance(subject, str) or not str.isdigit(number)):
+        if(not len(subject) <= 5 or not isinstance(subject, str) or not str.isdigit(number)):
             return render(request, 'coursetracker/404.html')
 
-    # course = Course.objects.get(id=pk)
-
     # use the given id to do a prereq lookup (ubcexplorer)
-    # courseInfo = ubcexplorer.generateCoursePrereqTree('ELEC 202')
+    courseInfo = ubcexplorer.generateCoursePrereqTree(subject + " " + number)
     # ******
-    # replace above line with the following (if taking too long)
-    courseInfo = {}
+    # comment out line above if taking too long
     # ******
 
     # find out grade distribution (ubc grades)
@@ -40,10 +38,25 @@ def course(request, pk):
     distributions = {}
     for sesh in courseSessions:
         distributions[sesh] = ubcgrades.grade_distribution('2018W', subject, number, sesh)
+
     # temporary 'OVERALL'
     courseInfo['distributions'] = list(distributions['OVERALL']['grades'].values())
     courseInfo['stats'] = distributions['OVERALL']['stats']
-    print(courseInfo, distributions['OVERALL']['grades'])
+
+    try:
+        instructorName = distributions[courseSessions[0]]['instructor'].split(', ')
+        instructorName = instructorName[1] + " " + instructorName[0]
+    except:
+        instructorName = 'TBA'
+
+    prof = rmp.UBCprofs.SearchProfessor(instructorName)
+    courseInfo['instructor'] = {
+        'name': instructorName,
+        'overall rating': prof['rating_class'],
+        'rating ': prof['overall_rating'],
+        'number of ratings': prof['tNumRatings'],
+    }
+    # print(courseInfo)
 
     return render(request, 'coursetracker/course.html', { 'courseData': courseInfo })
 

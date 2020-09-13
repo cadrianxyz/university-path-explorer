@@ -1,139 +1,76 @@
-{% extends 'coursetracker/main.html' %}
+{% extends 'main.html' %}
 
 {% block content %}
 
 {% load static %}
 
-<!--assets-->
-
-<body id="course" style=background-color:#bcbdbe>
-
 <!--Course details-->
+<div class="course-row"></div>
 
-<br>
-
-<div class="row">
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="course-details">
-                <div class= "card-header">
-                    <h3 class="card-title">{{ courseData.code }}</h3>
-                </div>
-                <div class="card-body">
-
-                <p>{{ courseData.desc }}</p>
-                <p>{{ courseData.prer }}</p>
-
-                </div>
-            </div>
+    <div class="card text-center mb-5 text-white" id="course-details">
+        <div class= "card-header">
+            <h2 class="card-title">{{ courseData.code }}</h2>
+        </div>
+        <div class="card-body">
+            <p>{{ courseData.desc }}</p>
+            <p>{{ courseData.prer }}</p>
         </div>
     </div>
+
 </div>
 
-<!--prereq and dependent-->
+<!--prereq-->
+<div class="course-row">
 
-<br>
-
-<div class="row">
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="prereq">
-                <div class="card-header">
-                    <h5 class="card-title">Prerequisite Courses</h5>
-                <div class= "card-header">
-                    <h5 class="card-title">Course Grade Profile</h5>
-                </div>
-                <div class="card-body">
-                    {% for key, val in courseData.stats.items %}
-                    <h3 class="grade-info">
-                        <span class="info-title">{{ key.capitalize }}</span>
-                        <span class="info-details">{{ val }}</span>
-                    </h3>
-                    {% endfor %}
-                </div>
+    <div class="course-col">
+        <div class="card text-center mb-3" id="prereq">
+            <div class= "card-header">
+                <h3 class="card-title">Course Grade Profile</h3>
+            </div>
+            <div class="card-body">
+                {% for key, val in courseData.stats.items %}
+                <h3 class="grade-info">
+                    <span class="info-key">{{ key.capitalize }}: </span>
+                    <span class="info-details">{{ val }}</span>
+                </h3>
+                {% endfor %}
             </div>
         </div>
     </div>
 
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="dependent">
-                <div class="card-header">
-                    <h5 class="card-title">Dependent Courses</h5>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title"></h3>
-                </div>
+    <!--ratemyprof-->
+    <div class="course-col">
+        <div class="card text-center mb-3" id="rmp">
+            <div class="card-header">
+                <h3 class="card-title">Course Professor</h3>
+            </div>
+            <div class="card-body">
+                {% for key, val in courseData.instructor.items %}
+                <h3 class="grade-info">
+                    <span class="info-key info-key-sm">{{ key.capitalize }}: </span>
+                    <span class="info-details">{{ val }}</span>
+                </h3>
+                {% endfor %}
             </div>
         </div>
     </div>
+
+    <div class="course-col">
+        <div class="card text-center mb-3">
+            <div class= "card-header">
+                <h3 class="card-title">Course Grade Distribution</h3>
+            </div>
+            <div class="card-body">
+                <!--grade distribution-->
+                {% include 'coursetracker/chart.html' with chartData=courseData.distributions %}
+            </div>
+        </div>
+    </div>
+
 </div>
 </div>
 
 <br>
-
-
-
-<!--ratemyprof-->
-
-<div class="row">
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="rmp">
-                <div class="card-header">
-                    <h5 class="card-title">Rate My Prof</h5>
-                <div class= "card-header">
-                    <h5 class="card-title">Professor: </h5>
-                </div>
-                <div class="card-body">
-
-                    <div class="row">
-                        <div class="col">
-                            5/5
-                        </div>
-                        <div class="col">
-                            55% take again
-                        </div>
-                    </div>
-
-                    <h3 class="card-title"></h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-<!--grade distribution-->
-<br>
-{% include 'coursetracker/chart.html' with chartData=courseData.distributions %}
 
 {% endblock %}
 
-<!--grade distribution-->
-
-
-
-<style>
-    .grade-info {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-    .info-title {
-        flex: 50%;
-        min-width: 200px;
-        text-align: right;
-        margin-left: 40px;
-        margin-right: 20px;
-    }
-    .info-details {
-        flex: 50%;
-        min-width: 200px;
-        text-align: left;
-    }
-</style>
-<br>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}" />
-</body>
