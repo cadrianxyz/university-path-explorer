@@ -45,6 +45,7 @@ def course(request, pk):
     courseInfo['stats'] = distributions['OVERALL']['stats']
     print(courseInfo, distributions['OVERALL']['grades'])
 
+
     return render(request, 'coursetracker/course.html', { 'courseData': courseInfo })
 
 class ClubChartView(TemplateView):
