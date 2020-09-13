@@ -8,11 +8,16 @@ from oakhacksvancoders.scrapers import ubcexplorer, ubcgrades
 def home(request):
     return render(request, 'coursetracker/search.html')
 
+def search(request):
+    if request.method == 'GET':
+        search = request.GET.get('find')
+        return course(request, search)
+
 def course(request, pk):
     # get the subject and number
     pkSplitted = pk.split(' ')
     if(len(pkSplitted) > 1):
-        subject = pkSplitted[0].capitalize() 
+        subject = pkSplitted[0].upper() 
         number = pkSplitted[1]
     else:
         subject = pk[0:-3].upper() 

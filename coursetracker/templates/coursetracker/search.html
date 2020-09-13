@@ -18,11 +18,14 @@
 
     </div>
 
-    <div class="wrapper">
-        <input type="text" class="input" placeholder="Explore courses" />
-        <div class="searchbtn">
-            <i class="fas fa-search"></i>
-        </div>
+    <form class="form-inline" method="get" action="{% url 'search' %}">
+        <div class="wrapper">
+            <input type="text" class="input" placeholder="Explore courses" aria-label="Search" name="find"/>
+            <button class="searchbtn" type="submit">
+                <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
     </div>
 
 
