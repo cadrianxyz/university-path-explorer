@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital@1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
 
@@ -48,7 +48,7 @@ h1 {
     white-space: nowrap;
     overflow: hidden;
     font-family: 'Quicksand', sans-serif;
-    font-size: 36px;
+    font-size: 50px;
     color: #000000;
     margin: 0 auto;
 }
@@ -66,7 +66,7 @@ h1 {
     }
 
     to {
-        width: 355px;
+        width: 500px;
     }
 }
 
@@ -89,7 +89,7 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0,0,0,0.6);
+    background:rgba(0,0,0,0.5);
     max-width: 550px;
     width: 100%;
     padding: 8px;
@@ -106,6 +106,7 @@ h1 {
     border: none;
     border-radius: 5px;
     font-weight: bold;
+    background:rgba(255,255,255,0.8);
 }
 
 /* Search button */
@@ -138,4 +139,21 @@ h1 {
 .navsearch {
     position: absolute;
     right: 10;
+}
+
+/* Footer */
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 18%;
+    background-color: #002145;
+    color: white;
+    text-align: center;
+}
+
+.footer .footertext{
+    bottom:50px;
 }
