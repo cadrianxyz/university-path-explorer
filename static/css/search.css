@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+
 
 * {
     margin: 0;
@@ -8,22 +11,78 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-body{
-    background-color: white;
-    width: 100%;
-    height: 100vh;
-    left: 80px;
+/*Body of the home page*/
 
+body {
+    background-size: cover;
+    background: url("../images/ubc.png") no-repeat center;
+    min-height: 100%;
+    background-position: center top;
 }
 
-.description {
+/* Navigation bar style */
+.navbarsearch1 {
+    overflow: hidden !important;
+    background-color: #002145 !important;
+    position: fixed !important; /* Set the navbar to fixed position */
+    top: 0 !important; /* Position the navbar at the top of the page */
+    width: 100% !important; /* Full width */
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+/* Welcome text positioning */
+
+.welcome {
     position: absolute;
     left: 50%;
     top: 25%;
     transform: translate(-50%, -25%);
     text-align: center;
-    
+    width: 100%;
 }
+
+/* Welcome text style */
+
+h1 {
+    border-right: solid 3px rgba(0,255,0,.75);
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 36px;
+    color: #000000;
+    margin: 0 auto;
+}
+
+/* Animation */
+h1 {
+    animation: animated-text 3s steps(29,end) 1s 1 normal both, animated-cursor 600ms steps(29,end) infinite;
+}
+
+/* text animation */
+
+@keyframes animated-text {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 355px;
+    }
+}
+
+/* cursor animations */
+
+@keyframes animated-cursor {
+    from {
+        border-right-color: rgba(0,0,0,0.6);
+    }
+
+    to {
+        border-right-color: transparent;
+    }
+}
+
+/* Search bar */
 
 .wrapper{
     position: absolute;
@@ -39,6 +98,8 @@ body{
     justify-content: space-between;
 }
 
+/* Search bar input */
+
 .wrapper .input{
     width: 88.5%;
     padding: 15px 20px;
@@ -47,14 +108,18 @@ body{
     font-weight: bold;
 }
 
+/* Search button */
+
 .searchbtn {
     background: #002145;
     width: 10%;
     border-radius: 5px;
     position: relative;
     cursor: pointer;
-    transition-duration: 0.4s;
+    transition-duration: 0.2s;
 }
+
+/* Search button icon */
 
 .searchbtn .fas{
     color: white;
@@ -69,3 +134,8 @@ body{
         background-color: #28a745;
         color: black;
     }
+
+.navsearch {
+    position: absolute;
+    right: 10;
+}
