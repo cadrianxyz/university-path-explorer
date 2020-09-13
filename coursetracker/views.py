@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from .models import *
-from oakhacksvancoders.scrapers import ubcexplorer, ubcgrades
+from oakhacksvancoders.scrapers import ubcexplorer, ubcgrades, rmp
 
 # the main dictionary
 courseInfo = {}
@@ -12,7 +12,6 @@ def search(request):
     if request.method == 'GET':
         search = request.GET.get('find')
 
-        # courseInfo = await ubcexplorer.generateCoursePrereqTree('ELEC 202')
         # ******
         # comment out line above if taking too long
         # ******
@@ -32,6 +31,7 @@ def course(request, pk):
             return render(request, 'coursetracker/404.html')
 
     # use the given id to do a prereq lookup (ubcexplorer)
+    courseInfo = ubcexplorer.generateCoursePrereqTree(subject + " " + number)
 
     # find out grade distribution (ubc grades)
     ## get the course sessions first
@@ -39,9 +39,22 @@ def course(request, pk):
     distributions = {}
     for sesh in courseSessions:
         distributions[sesh] = ubcgrades.grade_distribution('2018W', subject, number, sesh)
+
     # temporary 'OVERALL'
     courseInfo['distributions'] = list(distributions['OVERALL']['grades'].values())
     courseInfo['stats'] = distributions['OVERALL']['stats']
+
+    try:
+        instructorName = distributions['OVERALL']['instructor'].split(', ')
+        instructorName = instructorName[1] + " " + instructorName[0]
+    except:
+        instructorName = 'TBA'
+
+    prof = rmp.UBCprofs.SearchProfessor(instructorName)
+    print(prof, distributions['OVERALL']['instructor'])
+    courseInfo['instructor'] = {
+        'name': distributions['OVERALL']['instructor']
+    }
     # print(courseInfo)
 
     return render(request, 'coursetracker/course.html', { 'courseData': courseInfo })

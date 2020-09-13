@@ -19,16 +19,10 @@
 
     </div>
 
-    <form class="form-inline" method="get" action="{% url 'coursetracker:search' %}">
-        <div class="wrapper">
-            <input type="text" class="input" placeholder="Explore courses" aria-label="Search" name="find"/>
-            <button class="searchbtn" type="submit">
-                <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </form>
-    </div>
-
+    <form class="form-inline wrapper" method="get" action="{% url 'coursetracker:search' %}">
+        <input type="text" class="input" placeholder="Explore courses" aria-label="Search" name="find" required/>
+        <button class="searchbtn" type="submit"><i class="fas fa-search"></i></button>
+    </form>
 
 </body>
 </html>

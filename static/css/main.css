@@ -7,21 +7,21 @@ body {
 
 #course-details {
     background-color: #002145;
+    padding-bottom: 2em;
+    padding-top: 6em;
 }
 
-#prereq{
-    background-color: #97D4E9;
-}
-
-#dependent{
-    background-color: #6EC4E8;
+#prereq, #dependent, #rmp {
+    background-color: #97D4EA;
+    color: black;
 }
 
 #navbarNav{
     background-color: #002145;
-}
-
-#rmp{
-    background-color: #08203a
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 2em;
+    z-index: 1000;
 }
 
