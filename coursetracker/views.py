@@ -43,19 +43,29 @@ def course(request, pk):
     courseInfo['distributions'] = list(distributions['OVERALL']['grades'].values())
     courseInfo['stats'] = distributions['OVERALL']['stats']
 
-    try:
-        instructorName = distributions[courseSessions[0]]['instructor'].split(', ')
-        instructorName = instructorName[1] + " " + instructorName[0]
-    except:
-        instructorName = 'TBA'
+    prof_infos = ubcgrades.get_rmp_details(subject, number)
+    for key in prof_infos:
+        prof = rmp.UBCprofs.SearchProfessor(prof_infos.get(key))
+        courseInfo[key] = {
+            'section': key,
+            'name': prof_infos.get(key),
+            'overall rating': prof['rating_class'],
+            'rating ': prof['overall_rating'],
+            'number of ratings': prof['tNumRatings'],
+        }
+    #try:
+    #    instructorName = distributions[courseSessions[0]]['instructor'].split(', ')
+    #    instructorName = instructorName[1] + " " + instructorName[0]
+    #except:
+    #    instructorName = 'TBA'
 
-    prof = rmp.UBCprofs.SearchProfessor(instructorName)
-    courseInfo['instructor'] = {
-        'name': instructorName,
-        'overall rating': prof['rating_class'],
-        'rating ': prof['overall_rating'],
-        'number of ratings': prof['tNumRatings'],
-    }
+    #prof = rmp.UBCprofs.SearchProfessor(instructorName)
+    #courseInfo['instructor'] = {
+    #    'name': instructorName,
+    #    'overall rating': prof['rating_class'],
+    #    'rating ': prof['overall_rating'],
+    #    'number of ratings': prof['tNumRatings'],
+    #}
     # print(courseInfo)
 
 
