@@ -21,4 +21,7 @@ urlpatterns = [
     path('', include('coursetracker.urls')),
     path('course/', include('coursetracker.urls')),
     path('search/', include('coursetracker.urls')),
+    
+    path('genres/', include('treechart.urls')),
+    path('graph/', include('mptt_graph.urls')),    
 ]

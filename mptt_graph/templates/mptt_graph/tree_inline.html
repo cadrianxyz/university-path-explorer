@@ -1,0 +1,23 @@
+{% load static mptt_tags %}
+<link rel="stylesheet" media="screen, projection" href="{% static 'mptt_graph/tree.css' %}" />
+<div class="text-center">
+	<div class="text-left" style="display:inline-block">
+		<div class="tree">
+			<ul>
+			{% recursetree nodes %}
+		        <li>
+		        	<a href="{% if node.url %}{{ node.url }}{% else %}{{ node.get_absolute_url }}{% endif %}" id="{{ id }}">
+		            	{{ node.title }}{{ node.name }}
+		            	<div id="displayzone_{{ id }}" class="displayzone"></div>
+		            </a>
+		            {% if not node.is_leaf_node %}
+		                <ul>
+		                    {{ children }}
+		                </ul>
+		            {% endif %}
+		        </li>
+		    {% endrecursetree %}
+		    </ul>
+	    </div>
+	</div>
+</div>
