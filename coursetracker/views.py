@@ -11,10 +11,6 @@ courseInfo = {}
 def search(request):
     if request.method == 'GET':
         search = request.GET.get('find')
-
-        # ******
-        # comment out line above if taking too long
-        # ******
         # print('search', search)
         return redirect('coursetracker:course', pk=search)
 
@@ -32,6 +28,9 @@ def course(request, pk):
 
     # use the given id to do a prereq lookup (ubcexplorer)
     courseInfo = ubcexplorer.generateCoursePrereqTree(subject + " " + number)
+    # ******
+    # comment out line above if taking too long
+    # ******
 
     # find out grade distribution (ubc grades)
     ## get the course sessions first
@@ -51,11 +50,11 @@ def course(request, pk):
         instructorName = 'TBA'
 
     prof = rmp.UBCprofs.SearchProfessor(instructorName)
-    print(prof, distributions['OVERALL']['instructor'])
+    print('prof', instructorName)
     courseInfo['instructor'] = {
-        'name': distributions['OVERALL']['instructor']
+        'name': instructorName
     }
-    # print(courseInfo)
+    print(courseInfo)
 
     return render(request, 'coursetracker/course.html', { 'courseData': courseInfo })
 

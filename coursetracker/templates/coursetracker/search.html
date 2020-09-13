@@ -1,0 +1,37 @@
+{% extends 'coursetracker/main.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>University Path Explorer</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/search.css' %}" />
+
+</head>
+<body id="bodyhome">
+    <div class="welcome">
+        <h1>Explore your passion 
+        </h1>
+
+    </div>
+
+    <form class="form-inline" method="get" action="{% url 'search' %}">
+        <div class="wrapper">
+            <input type="text" class="input" placeholder="Explore courses" aria-label="Search" name="find"/>
+            <button class="searchbtn" type="submit">
+                <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="footer">
+        <p class="footertext"></p>
+    </div>
+
+</body>
+</html>
+
+{% endblock %}
