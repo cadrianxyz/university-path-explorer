@@ -49,38 +49,12 @@
                     <h5 class="card-title">Course Grade Profile</h5>
                 </div>
                 <div class="card-body">
+                    {% for key, val in courseData.stats.items %}
                     <h3 class="grade-info">
-                        <span class="info-title">Course Average:</span>
-                        {% if 'average' in courseData.grade_profile %}
-                        <span class="info-details">{{ courseData.grade_profile.average }}</span>
-                        {% else %}
-                        <span class="info-details">None</span>
-                        {% endif %}
+                        <span class="info-title">{{ key.capitalize }}</span>
+                        <span class="info-details">{{ val }}</span>
                     </h3>
-                    <h3 class="grade-info">
-                        <span class="info-title">Highest Grade:</span>
-                        {% if 'high' in courseData.grade_profile %}
-                        <span class="info-details">{{ courseData.grade_profile.high }}</span>
-                        {% else %}
-                        <span class="info-details">None</span>
-                        {% endif %}
-                    </h3>
-                    <h3 class="grade-info">
-                        <span class="info-title">Lowest Grade:</span>
-                        {% if 'low' in courseData.grade_profile %}
-                        <span class="info-details">{{ courseData.grade_profile.low }}</span>
-                        {% else %}
-                        <span class="info-details">None</span>
-                        {% endif %}
-                    </h3>
-                    <h3 class="grade-info">
-                        <span class="info-title">Passing Grade:</span>
-                        {% if 'pass_percentage' in courseData.grade_profile %}
-                        <span class="info-details">{{ courseData.grade_profile.pass_percentage }}</span>
-                        {% else %}
-                        <span class="info-details">None</span>
-                        {% endif %}
-                    </h3>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -131,9 +105,9 @@
     </div>
 </div>
 
-<!--grade distribution-->
 
-{% include 'coursetracker/chart.html' %}
+<!--grade distribution-->
+{% include 'coursetracker/chart.html' with chartData=courseData.distributions %}
 
 
 <style>
