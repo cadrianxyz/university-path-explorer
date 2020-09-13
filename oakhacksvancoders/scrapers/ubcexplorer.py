@@ -36,7 +36,7 @@ def courseInfo(code):
 #   "depn": [],
 #   "preq": [], - will contain more course objects (nested)
 # }
-def generateCoursePrereqTree(code):
+async def generateCoursePrereqTree(code):
     # obtain information on the course
     course = courseInfo(code)
     # cache information so we don't need to query the same course

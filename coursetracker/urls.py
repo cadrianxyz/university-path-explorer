@@ -1,8 +1,9 @@
 from django.urls import path
 from . import views
 
+app_name = 'coursetracker'
+
 urlpatterns = [
-    path('', views.home, name="home"),
-    path('course/<str:pk>', views.course, name="course"),
-    path('search/', views.search, name="search")
+    path('search', views.search, name="search"),
+    path('view/<str:pk>', views.course, name="course")
 ] 

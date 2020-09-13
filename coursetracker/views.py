@@ -1,17 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from .models import *
 from oakhacksvancoders.scrapers import ubcexplorer, ubcgrades
-# Create your views here.
 
-def home(request):
-    return render(request, 'coursetracker/search.html')
+# the main dictionary
+courseInfo = {}
 
+# search works as a "buffer" for when we are obtaining data
 def search(request):
     if request.method == 'GET':
         search = request.GET.get('find')
-        return course(request, search)
+
+        # courseInfo = await ubcexplorer.generateCoursePrereqTree('ELEC 202')
+        # ******
+        # comment out line above if taking too long
+        # ******
+        # print('search', search)
+        return redirect('coursetracker:course', pk=search)
 
 def course(request, pk):
     # get the subject and number
@@ -22,17 +28,10 @@ def course(request, pk):
     else:
         subject = pk[0:-3].upper() 
         number = pk[-3:]
-        if(not isinstance(subject, str) or not str.isdigit(number)):
+        if(not len(subject) <= 5 or not isinstance(subject, str) or not str.isdigit(number)):
             return render(request, 'coursetracker/404.html')
 
-    # course = Course.objects.get(id=pk)
-
     # use the given id to do a prereq lookup (ubcexplorer)
-    # courseInfo = ubcexplorer.generateCoursePrereqTree('ELEC 202')
-    # ******
-    # replace above line with the following (if taking too long)
-    courseInfo = {}
-    # ******
 
     # find out grade distribution (ubc grades)
     ## get the course sessions first
@@ -43,7 +42,7 @@ def course(request, pk):
     # temporary 'OVERALL'
     courseInfo['distributions'] = list(distributions['OVERALL']['grades'].values())
     courseInfo['stats'] = distributions['OVERALL']['stats']
-    print(courseInfo, distributions['OVERALL']['grades'])
+    # print(courseInfo)
 
     return render(request, 'coursetracker/course.html', { 'courseData': courseInfo })
 

@@ -1,4 +1,4 @@
-{% extends 'coursetracker/main.html' %}
+{% extends 'main.html' %}
 
 {% block content %}
 
@@ -18,7 +18,7 @@
 
     </div>
 
-    <form class="form-inline" method="get" action="{% url 'search' %}">
+    <form class="form-inline" method="get" action="{% url 'coursetracker:search' %}">
         <div class="wrapper">
             <input type="text" class="input" placeholder="Explore courses" aria-label="Search" name="find"/>
             <button class="searchbtn" type="submit">
