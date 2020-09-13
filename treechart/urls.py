@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import show_genres
+from .views import create_chart
 
 urlpatterns = [
-    path('', show_genres),
+    path('', create_chart),
 ]

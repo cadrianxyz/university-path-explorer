@@ -3,6 +3,8 @@ import requests
 api = 'https://ubcgrades.com/api/'
 
 # check if all methods do not equal 'None'
+DEFAULT_TERM_SUMMER = '2018S'
+DEFAULT_TERM_WINTER = '2018W'
 
 # methods for the drop down menus ---------------------
 
@@ -53,3 +55,19 @@ def grade_distribution(term, subject, course, section):
         return None
     else:
         return r.json()
+
+def findCourseSessions(subject, course):
+    url = api + 'sections/' + DEFAULT_TERM_SUMMER + '/' + subject + '/' + course
+    r1 = requests.get(url)
+    try:
+        r1json = r1.json()
+    except:
+        r1json = []
+    url = api + 'sections/' + DEFAULT_TERM_WINTER + '/' + subject + '/' + course
+    r2 = requests.get(url)
+    try:
+        r2json = r2.json()
+    except:
+        r2json = []
+    
+    return [*r1json, *r2json]

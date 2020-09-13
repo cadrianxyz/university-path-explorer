@@ -1,6 +1,6 @@
 {% load mptt_tags %}
 <ul>
-    {% recursetree genres %}
+    {% recursetree charts %}
         <li>
             {{ node.name }}
             {% if not node.is_leaf_node %}

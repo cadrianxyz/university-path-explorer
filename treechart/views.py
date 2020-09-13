@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .models import Genre
+from .models import Chart
 
 # Create your views here.
-def show_genres(request):
-    return render(request, "genres.html", {'genres': Genre.objects.all()})
+
+def create_chart(request):
+    return render(request, "genres.html", {'charts': Chart.objects.all()})
