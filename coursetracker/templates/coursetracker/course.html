@@ -102,12 +102,11 @@
     </div>
 </div>
 
-{% include 'coursetracker/chart.html' %}
+{% include 'coursetracker/chart.html' with chartData=courseData.distributions %}
 
 {% endblock %}
 
 <!--grade distribution-->
-{% include 'coursetracker/chart.html' with chartData=courseData.distributions %}
 
 
 <style>
