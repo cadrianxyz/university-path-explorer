@@ -1,8 +1,5 @@
-#logo{
-}
-
-body {
-    background-color: #ebeff5;
+#course {
+    background-image: url("images/ubc2.png") 50% 0 no-repeat;
 }
 
 #course-details {
@@ -10,7 +7,7 @@ body {
 }
 
 #prereq{
-    background-color: #97D4E9;
+    background-color: #4a8599;
 }
 
 #dependent{

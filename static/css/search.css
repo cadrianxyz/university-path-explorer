@@ -15,7 +15,7 @@
 
 body {
     background-size: cover;
-    background: url("../images/ubc.png") no-repeat center;
+    background: url("../images/ubc.png") no-repeat 0 center fixed;
     min-height: 100%;
     background-position: center top;
 }
