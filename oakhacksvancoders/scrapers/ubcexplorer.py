@@ -19,7 +19,7 @@ def courseInfo(code):
         response = r.json()
         return response
     except ValueError:
-        return None
+        return {}
 
 # returns the whole prerequisite tree for a subject, including course information
 ## course return form:
@@ -41,7 +41,6 @@ def generateCoursePrereqTree(code):
     course = courseInfo(code)
     # cache information so we don't need to query the same course
     allCourseData[code] = course
-    # print(course)
 
     preq = []
     if(course):

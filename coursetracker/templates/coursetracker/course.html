@@ -8,6 +8,28 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 
+<!--Course details-->
+
+<br>
+
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="course-details">
+                <div class= "card-header">
+                    <h3 class="card-title">{{ courseData.code }}</h3>
+                </div>
+                <div class="card-body">
+
+                <p>{{ courseData.desc }}</p>
+                <p>{{ courseData.prer }}</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--prereq and dependent-->
 
 <br>
@@ -18,9 +40,16 @@
             <div class="card text-center text-white mb-3" id="prereq">
                 <div class="card-header">
                     <h5 class="card-title">Prerequisite Courses</h5>
+                <div class= "card-header">
+                    <h5 class="card-title">Course Grade Profile</h5>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title"></h3>
+                    {% for key, val in courseData.stats.items %}
+                    <h3 class="grade-info">
+                        <span class="info-title">{{ key.capitalize }}</span>
+                        <span class="info-details">{{ val }}</span>
+                    </h3>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -40,8 +69,6 @@
     </div>
 </div>
 
-<!--grade distribution-->
-
 <br>
 
 
@@ -54,6 +81,8 @@
             <div class="card text-center text-white mb-3" id="rmp">
                 <div class="card-header">
                     <h5 class="card-title">Rate My Prof</h5>
+                <div class= "card-header">
+                    <h5 class="card-title">Professor: </h5>
                 </div>
                 <div class="card-body">
 
@@ -76,3 +105,28 @@
 {% include 'coursetracker/chart.html' %}
 
 {% endblock %}
+
+<!--grade distribution-->
+{% include 'coursetracker/chart.html' with chartData=courseData.distributions %}
+
+
+<style>
+    .grade-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .info-title {
+        flex: 50%;
+        min-width: 200px;
+        text-align: right;
+        margin-left: 40px;
+        margin-right: 20px;
+    }
+    .info-details {
+        flex: 50%;
+        min-width: 200px;
+        text-align: left;
+    }
+</style>
+
