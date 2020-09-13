@@ -21,4 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_view, name='home'),
     path('course/', include('coursetracker.urls')),
+
+    path('genres/', include('treechart.urls')),
+    path('graph/', include('mptt_graph.urls')),    
 ]
