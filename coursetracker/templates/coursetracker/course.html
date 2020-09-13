@@ -46,10 +46,41 @@
         <div class="col-md">
             <div class="card text-center text-white mb-3" id="prereq">
                 <div class= "card-header">
-                    <h5 class="card-title">Prerequisite Courses</h5>
+                    <h5 class="card-title">Course Grade Profile</h5>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title"></h3>
+                    <h3 class="grade-info">
+                        <span class="info-title">Course Average:</span>
+                        {% if 'average' in courseData.grade_profile %}
+                        <span class="info-details">{{ courseData.grade_profile.average }}</span>
+                        {% else %}
+                        <span class="info-details">None</span>
+                        {% endif %}
+                    </h3>
+                    <h3 class="grade-info">
+                        <span class="info-title">Highest Grade:</span>
+                        {% if 'high' in courseData.grade_profile %}
+                        <span class="info-details">{{ courseData.grade_profile.high }}</span>
+                        {% else %}
+                        <span class="info-details">None</span>
+                        {% endif %}
+                    </h3>
+                    <h3 class="grade-info">
+                        <span class="info-title">Lowest Grade:</span>
+                        {% if 'low' in courseData.grade_profile %}
+                        <span class="info-details">{{ courseData.grade_profile.low }}</span>
+                        {% else %}
+                        <span class="info-details">None</span>
+                        {% endif %}
+                    </h3>
+                    <h3 class="grade-info">
+                        <span class="info-title">Passing Grade:</span>
+                        {% if 'pass_percentage' in courseData.grade_profile %}
+                        <span class="info-details">{{ courseData.grade_profile.pass_percentage }}</span>
+                        {% else %}
+                        <span class="info-details">None</span>
+                        {% endif %}
+                    </h3>
                 </div>
             </div>
         </div>
@@ -69,8 +100,6 @@
     </div>
 </div>
 
-<!--grade distribution-->
-
 <br>
 
 
@@ -82,7 +111,7 @@
         <div class="col-md">
             <div class="card text-center text-white mb-3" id="rmp">
                 <div class= "card-header">
-                    <h5 class="card-title">Rate My Prof</h5>
+                    <h5 class="card-title">Professor: </h5>
                 </div>
                 <div class="card-body">
                 
@@ -102,4 +131,27 @@
     </div>
 </div>
 
+<!--grade distribution-->
+
 {% include 'coursetracker/chart.html' %}
+
+
+<style>
+    .grade-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .info-title {
+        flex: 50%;
+        min-width: 200px;
+        text-align: right;
+        margin-left: 40px;
+        margin-right: 20px;
+    }
+    .info-details {
+        flex: 50%;
+        min-width: 200px;
+        text-align: left;
+    }
+</style>

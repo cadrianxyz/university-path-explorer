@@ -19,7 +19,7 @@ def courseInfo(code):
         response = r.json()
         return response
     except ValueError:
-        return None
+        return {}
 
 # returns the whole prerequisite tree for a subject, including course information
 ## course return form:
