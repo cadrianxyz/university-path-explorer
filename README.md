@@ -2,7 +2,7 @@
 
 Simple web application built with Django for Oakhacks2020. The application aims to provide an one-stop interface for UBC students to find course information, including professor rating and grade distribution, in hopes of helping them better plan out their study path throughout university. See our [Devpost](https://devpost.com/software/university-path-explorer).
 
-
+<img src="./screenshot.png">
 
 ## Features
 
@@ -39,7 +39,4 @@ If using pipenv, run the following:
 ```
 pipenv run python3 manage.py runserver
 ```
-
-## Contributors
-
 
