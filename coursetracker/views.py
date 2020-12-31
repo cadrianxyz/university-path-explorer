@@ -36,12 +36,27 @@ def course(request, pk):
     ## get the course sessions first
     courseSessions = ubcgrades.findCourseSessions(subject, number)
     distributions = {}
+    print(courseSessions)
     for sesh in courseSessions:
         distributions[sesh] = ubcgrades.grade_distribution('2018W', subject, number, sesh)
 
     # temporary 'OVERALL'
-    courseInfo['distributions'] = list(distributions['OVERALL']['grades'].values())
-    courseInfo['stats'] = distributions['OVERALL']['stats']
+    i = 0
+    sesh = courseSessions[i]
+    while not distributions[sesh]:
+        i += 1
+        sesh = courseSessions[i]
+
+    courseInfo['distributions'] = list(distributions[sesh]['grades'].values())
+    courseInfo['stats'] = { 'average': distributions[sesh]['average'],
+                            'stdev': distributions[sesh]['stdev'],
+                            'high': distributions[sesh]['high'],
+                            'low': distributions[sesh]['low'],
+                            'pass': distributions[sesh]['pass'],
+                            'fail': distributions[sesh]['fail'],
+                            'withdrew': distributions[sesh]['withdrew'],
+                            'audit': distributions[sesh]['audit'],
+                            'other': distributions[sesh]['other'] }
 
     try:
         instructorName = distributions[courseSessions[0]]['instructor'].split(', ')
